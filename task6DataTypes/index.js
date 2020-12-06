@@ -82,3 +82,25 @@ const makeListFromRange = (arr) => {
 };
  
 console.log(makeListFromRange([2, 7]));
+
+//---
+const actors = [
+  {name: 'tommy', age: 36},
+  {name: 'lee', age: 28},
+];
+
+const getArrayOfKeys = (object, value) => {
+   // let result = objArray.map(a => a.foo);
+    var output = [];
+    for (var i = 0; i < object.length; i++)
+        output.push(object[i][value]);
+    return output;
+};
+
+console.log(getArrayOfKeys(actors,'age'));
+
+const sumOfAges = actors.reduce((sum, currentValue) => {
+    return sum + currentValue.age;
+}, 0);
+
+console.log(sumOfAges);

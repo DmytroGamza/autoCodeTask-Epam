@@ -37,10 +37,48 @@ console.log(executeforEach([1, 2, 3]));
 
 //---
 const mapArray = (arr) => {
-  //  for (let i = 0; i < arr.length; i++)  
-    arr.parseInt();
-    console.log(arr);
-  return arr;
+    let newArr2 = [];
+    for (let i = 0; i < arr.length; i++) {
+        newArr2.push(parseInt(arr[i]));
+    }
+    console.log(newArr2);
+    newArr2.forEach(function (val, idx) {
+        newArr2[idx] = val + 3;
+        
+ });
+  return newArr2;
 };
 
 console.log(mapArray([2, '5', 8]));
+
+//---
+const filterArray = (arr) => {
+  let newArr3 = [];
+    for (i = 0; i < arr.length; i++){
+        if (arr[i] % 2 === 0) {
+            newArr3.push(arr[i]);
+        }
+    }
+  return newArr3;
+};
+
+console.log(filterArray([2, 5, 8]));
+
+//---
+function reverseString(str) {
+    return str.split("").reverse().join("");
+}
+console.log(reverseString("hello"));
+
+//---
+const makeListFromRange = (arr) => {
+    let newArr5 = [];
+    console.log(arr[0]);
+    console.log(arr[1]);
+  for (i = arr[0]; i <= arr[1]; i++) {
+    newArr5.push(i);
+  }
+    return newArr5;
+};
+ 
+console.log(makeListFromRange([2, 7]));

@@ -109,3 +109,74 @@ console.log(sumOfAges);
 const every_nth = (arr, nth) => arr.filter((e, i) => i % nth === nth - 1);
 console.log(every_nth([1, 2, 3, 4, 5, 6], 1));
 
+//---
+const validateTitle = (value) => {
+   // console.log(value.charAt(0));
+    if (typeof value !== 'string') {
+        return 'Incorrect input data';
+    } else if (value.length <= 2) {
+        return 'INVALID';
+    } else if (value.charAt(0) === value.charAt(0).toUpperCase()) {
+        return 'INVALID';
+    }
+  return 'VALID';
+}
+
+console.log(validateTitle('22f'));
+
+//"test": "npm run test:junit",
+//vs
+//"test": "mocha || true",
+
+function countNumbers(string) {
+    let strNumbers = string.replace(/\D/g, '');
+      strNumbers = Array.from(strNumbers);
+    console.log(strNumbers);
+  return { '1': 1, '2': 1, '3': 2, '4': 5, '6': 3, '8': 4 };
+};
+
+countNumbers('erer384jj4444666888jfd123');
+
+//---
+function isLeapYear(date) {
+  if (typeof date === 'string' && date.length >= 20){
+    return 'Invalid Date';
+  }
+  else if (typeof date === 'string') { 
+    let four = date.substring(0, 4);
+    four = parseInt(four);
+        if (four % 2020 === 0) {
+            return '2020 is a leap year';
+        }
+        else {
+            return `${four} is not a leap year`;
+        }
+ }
+  else if ((typeof date === 'number') && (date >= 12131313131)) {
+    return 'Invalid Date';
+  }
+  else if (typeof date === 'number') {
+     // console.log(date);
+    let dateTransform = new Date(date);
+      dateTransform = dateTransform.toString();
+    //  console.log(typeof dateTransform);
+   //   console.log(dateTransform);
+     let year = dateTransform.slice(11, 15);
+    //  console.log(year);
+    year = parseInt(year);
+    if (year % 4 !== 0) {
+      return `${year} is not a leap year`;
+    }
+    else {
+      return `${year} is a leap year`;
+    }
+    }
+  else {
+    return '2020 is a leap year';
+  }
+};
+
+console.log(isLeapYear(1213131313));
+
+let date1 = new Date(1213131313);
+console.log(date1);

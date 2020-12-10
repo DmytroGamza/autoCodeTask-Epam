@@ -122,6 +122,22 @@ const validateTitle = (value) => {
   return 'VALID';
 }
 
+const validateTitleAL = (value) => {
+  if (typeof value !== 'string') {
+    return 'Incorrect input data';
+  }
+
+  if (value.length <= 2 || value.length > 20) {
+    return 'INVALID';
+  } else if ('1234567890'.indexOf(value[0]) !== -1) {
+    return 'INVALID';
+  } else if (value[0] !== value[0].toUpperCase()) {
+    return 'INVALID';
+  } else {
+    return 'VALID';
+  }
+}
+
 console.log(validateTitle('22f'));
 
 //"test": "npm run test:junit",
@@ -180,3 +196,22 @@ console.log(isLeapYear(1213131313));
 
 let date1 = new Date(1213131313);
 console.log(date1);
+
+function isLeapYearAL(date) {
+    const getDate = new Date(date);
+    if ('' + getDate === 'Invalid Date') {
+        return 'Invalid Date';
+    }
+    const checkDate = new Date(getDate.getFullYear(), 1, 29);
+    return checkDate.getDate() === 29 ? `${getDate.getFullYear()} is a leap year` : `${getDate.getFullYear()} is not a leap year`;
+};
+
+function makeNumberAL(string) {
+    return string.split('').filter(element => !isNaN(+element)).join('');
+}
+
+//"test": "npm run test:junit",
+//vs
+//"test": "mocha || true",
+
+//---

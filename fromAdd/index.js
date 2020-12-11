@@ -156,3 +156,186 @@ const obj = {
 console.log(JSON.stringify(obj));
 console.log(JSON.stringify(obj, null, 4));
 console.log(JSON.stringify(obj, replacer));
+
+//execute promise sequentially
+/*
+const asyncSequentializer = (() => {
+    const toPromise = (x) => {
+        if (x instanceof Promise) {
+            return x;
+        }
+        if (typeof x === 'function') {
+            return (async () => await x())();
+        }
+        return Promise.resolve(x)
+    }
+    //take a list of anything: function, async function, promise
+    return (list) => {
+        const results = [];
+        return list
+            .reduce((lastPromise, currentPromise) => {
+            return lastPromise.then(res => {
+                results.push(res);
+                return toPromise(currentPromise);
+            });
+        }, toPromise(list.shift())).then(res => Promise.resolve([...results, res]));
+    }
+})();
+console.log(asyncSequentializer());
+*/
+
+//polling data - when you need to keep checking for data updates
+/*
+async function poll(fn, validate, interval = 2500) {
+    const resolver = async (resolve, reject) => {
+        try {       //catch any error thrown by the 'fn' function
+            const result = await fn();
+            const valid = validate(result);
+
+            if (valid === true) {
+                resolve(result);
+            } else if (valid === false) {
+                setTimeout(resolver, interval, resolve, reject);
+            }
+        } catch (e) {
+            reject(e);
+        }
+    };
+    return new Promise(resolver);
+}
+console.log(poll());
+*/
+
+//wait for all Promise to complete
+const prom1 = Promise.reject(12);
+const prom2 = Promise.resolve(24);
+const prom3 = Promise.resolve(48);
+const prom4 = Promise.resolve('error');
+
+Promise.all([prom1, prom2, prom3, prom4])
+.then(res => console.log('all',res)).catch(err => console.log('all failed', err))
+
+Promise.allSettled([prom1, prom2, prom3, prom4])
+    .then(res => console.log('allSettled', res))
+    .catch(err => console.log('allSetted failed', err))
+
+Promise.any([prom1, prom2, prom3, prom4])
+    .then(res => console.log('any', res))
+    .catch(err => console.log('any failed', err))
+
+Promise.race([prom1, prom2, prom3, prom4])
+    .then(res => console.log('race', res))
+    .catch(err => console.log('race failed', err))
+
+//swap array values place
+const array1 = [12, 24, 48];
+const swapOldWay = (arr, i, j) => {
+    const arrayCopy = [...arr];
+    let temp = arrayCopy[i];
+    arrayCopy[i] = arrayCopy[j];
+    arrayCopy[j] = temp;
+    return arrayCopy;
+}
+const sawpNewWay = (arr, i, j) => {
+    const arrayCopy = [...arr];
+    [arrayCopy[i], arrayCopy[j]] = [arrayCopy[j], arrayCopy[i]]
+    return arrayCopy;
+}
+console.log(swapOldWay(array1, 1, 2));
+console.log(sawpNewWay(array1, 1, 2));
+
+//conditional object key
+let condition = true;
+const man = {
+    someProperty: 'some value', ...(condition === true ? { newProperty: 'value' } : {})
+}
+console.log(man);
+
+//use variables as the object key
+let property = 'newValidProp';
+const man2 = {
+    someProperty: 'some value', [`${property}`]: 'value'
+}
+
+// check for key in object
+const sample = {
+    prop: 'value'
+}
+console.log('prop' in sample);
+console.log('toString' in sample);
+//-using the 'hasOwnProperty' methods is safer
+console.log(sample.hasOwnProperty('prop'));
+console.log(sample.hasOwnProperty('toString'));
+
+//remove array duplicates
+const numberArrays = [undefined, Infinity, 12, NaN, false, 5, 7, null, 12, false, 5,
+    undefined, 89, 9, null, Infinity, 5, NaN];
+const objArrays = [{ id: 1 }, { id: 4 }, { id: 1 }, { id: 5 }, { id: 4 }];
+console.log(Array.from(new Set(numberArrays)),Array.from(new Set(objArrays)));
+
+const idSet = new Set();
+console.log(objArrays.filter(obj => {
+    const existingId = idSet.has(obj.id);
+    idSet.add(obj.id);
+    return !existingId;
+})
+);
+
+//Do 'break' and 'continue' in Array forEach
+const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+for (const number of numbers) {
+    if (number % 2 === 0) {
+        continue;
+    }
+    if (number > 5) {
+        break;
+    }
+    console.log(number);
+}
+numbers.some(number => {
+    if (number % 2 === 0) {
+        return false;
+    }
+    if (number > 4) {
+        return true;
+    }
+    console.log(number)
+});
+
+//destructuring with alias name and default values
+function demo1({ dt: data }) {
+    console.log(data);
+}
+function demo2({ dt: { name, id = 10 } }) {
+    console.log(name, 10);
+}
+demo1({
+    dt: { name: 'sample', id: 50 },
+});
+demo2({
+    dt: { name: 'sample' },
+});
+
+//optional chaining and nullish coalescing
+const obj2 = {
+    data: {
+        container: {
+            name: {
+                value: 'sample'
+            },
+            int: {
+                value:0
+            }
+        }
+    }
+}
+console.log(
+    obj2.data.container.int.value || 'no int value',
+    obj2.data.container.int.value ?? 'no int value'
+);
+console.log(
+    obj2.data.container.name.value,
+    (obj2 && obj2.data && obj2.data.wrapper && obj2.data.wrapper.name) || 'no name',
+    (obj2?.data?.container?.name) || 'no name'
+);
+

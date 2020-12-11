@@ -22,11 +22,11 @@ function numberCheck(str) {
     let checker = Number.isNaN(str);
   //  console.log(typeof checker, checker);
    // let checker2 = checker.isNaN();
-    if (checker === false) {
+    if (isNaN(str)) {
         return 'Unvalid income';
     } else {
         return checker;
     }
 }
 
-console.log(numberCheck(314));
+console.log(numberCheck('314dsd'));

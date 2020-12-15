@@ -9,3 +9,21 @@ ul {
 div > ol {
     list-style-type: upper-roman;
 }
+
+table, th, td {
+    border: 1px solid orange;
+    border-collapse: collapse;
+    text-align: end;
+}
+
+th, td {
+    padding: 10px;
+}
+
+pre code {
+    width: fit-content;
+    background-color: #eee;
+    border: 1px solid #999;
+    display: block;
+    padding: 20px; 
+}

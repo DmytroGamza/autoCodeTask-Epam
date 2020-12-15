@@ -444,3 +444,30 @@ const deepFreeze = obj => {
     }
     return obj;
 };
+
+//------
+//uderstanding promises
+const promise4 = Promise.resolve(1);
+promise4.then(function (value) {
+    console.log('this will run as it is a resolved promise. The resolved value is',
+        value);
+});
+promise4.catch(function (reason) {
+    console.log('This will not run as it is a resolved promise', reason);
+});
+//uderstanding async-awai
+async function testAsync() {
+    for (let i = 0; i < 1; i++) {
+        try {
+            result1 = await promiseTRRARNOSG();
+            console.log('Result 1', result1);
+            result2 = await promiseTRRARNOSG();
+            console.log('Result 2', result2);
+        } catch (e) {
+            console.log('Error', e);
+        } finally {
+            console.log('This is done');
+        }
+    }
+}
+testAsync();

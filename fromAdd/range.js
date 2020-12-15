@@ -64,3 +64,87 @@ function getFields(input, field) {
 var result6 = getFields(objArray, "foo"); // returns [ 1, 3, 5 ]
 console.log(result6);
 console.log(getFields(cars, "model"));
+
+const cars2 = [
+    {
+    'color': "purple",
+    'type': 'minivan',
+    'registration': new Date('2012-02-03'),
+    'capacity':7
+},
+     {
+    "color": "red",
+    "type": "station wagon",
+    "registration": new Date('2018-03-03'),
+    "capacity": 5
+    }
+];
+console.log(cars2);
+
+let carN = {
+    'color': "red",
+    'type': 'cabrio',
+    'registration': new Date('2016-03-02'),
+    'capacity':2
+}
+cars2.unshift(carN);
+console.log(cars2);
+cars2.push(carN);
+console.log(cars2);
+cars2.splice(2, 0, carN);
+console.log(cars2);
+//find
+let carF = cars2.find(car => car.color === 'red');
+console.log(carF);
+let carF2;
+console.log(carF2 = cars2.find(car => car.color === 'red' && car.type === 'station wagon'));
+//filter
+let redCars = cars2.filter(car => car.color === 'red');
+console.log(redCars);
+//map
+let sizes = cars2.map(car => {
+    if (car.capacity <= 3) {
+        return 'small';
+    }
+    if (car.capacity <= 5) {
+        return 'medium';
+    }
+    return 'large';
+});
+console.log(sizes);
+
+//creating newObject witn map()
+let carsProperties = cars2.map(car => {
+    let properties = {
+        'capacity': car.capacity,
+        'size': 'large'
+    };
+    if (car.capacity <= 5) {
+        properties['size'] = 'medium';
+    }
+    if (car.capacity <= 3) {
+        properties['size'] = 'small';
+    }
+    return properties;
+});
+console.log(carsProperties);
+
+//forEach()
+cars2.forEach(car => {
+    car['size'] = 'large';
+    if (car.capacity <= 5) {
+        car['size'] = 'medium';
+    }
+    if (car.capacity <= 3) {
+        car['size'] = 'small';
+    }
+});
+console.log(cars2);
+
+//sort()
+let sortedCars = cars2.sort((c1, c2) => (c1.capacity < c2.capacity) ? 1 : (c1.capacity > c2.capacity) ? -1 : 0);
+console.log(sortedCars);
+
+//every() and some()
+cars2.some(car => car.color === 'red' && car.type === 'cabrio')
+cars2.every(car => car.capacity >= 4);

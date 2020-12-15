@@ -339,3 +339,108 @@ console.log(
     (obj2?.data?.container?.name) || 'no name'
 );
 
+// extend class with function
+function Parent() {
+    const privateProp = 12;
+    const privateMethod = () => privateProp + 10;
+    this.publicMethod = (x = 0) => privateMethod() + x;
+    this.publicProp = 10;
+}
+class Child extends Parent {
+    myProp = 20;
+}
+const child = new Child();
+console.log(
+    child.myProp,
+    child.publicProp,
+    child.publicMethod(20),
+    child.privateProp
+   // child.privateMethod()
+);
+
+//extend constructor functions
+function Employee() {
+    this.profession = 'Software Engineer';
+    this.salary = '$150000';
+}
+function DeveloperFreeLancer() {
+    this.programmingLanguages = ['Javascript', 'Python', 'Swift'];
+    this.avgPerHour = '$100';
+}
+function Engineer(name) {
+    this.name = name;
+    this.freelancer = {};
+    Employee.apply(this);
+    DeveloperFreeLancer.apply(this.freelancer);
+}
+const john = new Engineer('John Doe');
+console.log(
+    john.name,
+    john.profession,
+    john.salary,
+    john.freelancer
+);
+
+//loop anything
+function forEach(list, callback) {
+    const entries = Object.entries(list);
+    let i = 0;
+    const len = entries.length;
+    for (; i < len; i++) {
+        const res = callback(entries[i][1], entries[i][0], list);
+        if (res === true) break;
+    }
+}
+//forEach([1, 2, 3], console.log);
+forEach(new Set([1, 3, 5]), console.log);
+forEach(new Map([[1, 2], [2, 2], [3, 3]]), console.log);
+forEach('123', console.log);
+forEach({ a: 1, b: 2, c: 3 }, console.log);
+
+//make fucntion argument required
+function required(argName = 'param') {
+    throw new Error(`"${argName}" is required`)
+}
+function iHaverequiredOptions(arg1 = required('arg1'), arg2 = 10) {
+    console.log(arg1 + arg2);
+}
+iHaverequiredOptions(12, 88);
+//iHaverequiredOptions(undefined, 24);
+
+//create modules or singletons
+/*
+class Service {
+    name = 'service'
+}
+const service = (fucntion(S) {
+    const service = new S();
+return () => service;
+}) (Service)
+const element = (fucntion(S) {
+    const element = document.createElement('DIV'); 
+return () => element;
+}) ()
+*/
+
+//deep clone object
+const deepClone = obj => {
+    let clone = obj;
+    if (obj && typeof obj === 'object') {
+        clone = new obj.constructor();
+        Object.getOwnPropertyNames(obj).forEach(
+            prop => (clone[prop] = deepClone(obj[prop]))
+        );
+    }
+    return clone;
+};
+
+//deep freeze object
+const deepFreeze = obj => {
+    if (obj && typeof obj === 'object') {
+        if (!Object.isFrozen(obj)) {
+            Object.freeze(obj);
+        }
+        Object.getOwnPropertyNames(obj).forEach(prop => deepFreeze(obj[prop]));
+    }
+    return obj;
+};

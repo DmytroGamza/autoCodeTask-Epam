@@ -30,3 +30,19 @@ function numberCheck(str) {
 }
 
 console.log(numberCheck('314dsd'));
+
+//text-for-roles
+const arr = textLines.split('\n');
+    let result = '';
+
+    roles.forEach(role => {
+        let temp = `\n${role}: \n`;
+
+        arr.forEach((line, j) => {
+            if(line.indexOf(role >= 0 ) && line.indexOf(role >= 0) < role.length) {
+                const filling = line.slice(role.length + 1);
+                temp += `${j + 1}) ${strContent}\n`;
+            }
+        });
+        result += temp;
+    });

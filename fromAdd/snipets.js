@@ -83,3 +83,21 @@ function loadDoc() {
     xhttp.open('GET', 'https://youtu.be/gvicrj31JOM', true);
     xhttp.send();
 }
+
+let sunny = 'Hiya how are you'.substring(0, 8);
+console.log(sunny);
+
+let sunny2 = '1234567890987654321';
+let sunnyCut = sunny2.substr(-8);
+document.write(sunnyCut);
+
+//make a property read-only
+const movieTicket = {
+    movie: 'Mad Max',
+    hall: 1
+};
+Object.defineProperty(movieTicket, 'movie', { value: 'Mad Max', writable: false });
+movieTicket.movie = 'Star Wars';
+console.log(movieTicket);
+
+//

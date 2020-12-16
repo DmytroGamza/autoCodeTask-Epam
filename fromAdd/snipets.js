@@ -20,3 +20,33 @@ let x = 3, y = -2;
 let z = Math.min(x, y);
 console.log(z);
 //const x1 = Math.min(f(foo), boundary);
+
+//functions
+let myText = 'I am a string';
+let newString = myText.replace('string', 'sausage');
+console.log(newString);
+let myArray = ['I', 'love', 'chocolate', 'frogs'];
+let madeAString = myArray.join(' ');
+console.log(madeAString);
+let myNumber = Math.random();
+console.log(myNumber);
+
+function draw() {
+  ctx.clearRect(0,0,WIDTH,HEIGHT);
+  for (let i = 0; i < 100; i++) {
+    ctx.beginPath();
+    ctx.fillStyle = 'rgba(255,0,0,0.5)';
+    ctx.arc(random(WIDTH), random(HEIGHT), random(50), 0, 2 * Math.PI);
+    ctx.fill();
+  }
+}//draw();
+
+function random(number) {
+    return Math.floor(Math.random() * number);
+}
+console.log(random(17));
+
+const myButton = document.querySelector('button');
+myButton.onclick = function() {
+  alert('hello');
+}

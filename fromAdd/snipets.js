@@ -50,3 +50,36 @@ const myButton = document.querySelector('button');
 myButton.onclick = function() {
   alert('hello');
 }
+
+//Leap Year
+function checkLeapYear(year) {
+    if ((0 === year % 4) && (year % 100 !== 0) || (year % 400 === 0)) {
+        console.log(`${year} is a leap year`);
+    } else {
+        console.log(`${year} is not a leap year`);
+    }
+}
+
+//checkLeapYear(year);
+
+function checkLeapYear2(year) {
+    const leap = new Date(year, 1, 29).getDate() === 29;
+    if (leap) {
+        console.log(`${year} is a leap year`);
+    } else {
+        console.log(`${year} is not a leap year`);
+    }
+}
+const year = 2021;//prompt('Enter a year:');
+checkLeapYear2(year);
+
+function loadDoc() {
+    let xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            document.getElementById('demo').innerHTML = this.responseText;
+        }
+    };
+    xhttp.open('GET', 'https://youtu.be/gvicrj31JOM', true);
+    xhttp.send();
+}

@@ -57,12 +57,12 @@ pre code {
     border-top: 150px solid #f00;
 }
 
-input {
+#input2 {
     outline: 0;
     border-width: 0 0 2px;
     border-color: blue;
 }
 
-input:focus {
+#input2:focus {
     border-color: green;
 }

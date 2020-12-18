@@ -100,4 +100,79 @@ Object.defineProperty(movieTicket, 'movie', { value: 'Mad Max', writable: false 
 movieTicket.movie = 'Star Wars';
 console.log(movieTicket);
 
+//parseInt()
+function filterInt(value) {
+  if (/^[-+]?(\d+|Infinity)$/.test(value)) {
+    return Number(value)
+  } else {
+    return NaN
+  }
+}
+
+console.log(filterInt('-21'));
+
+//substring();
+var anyString = 'Mozilla';
+// Отобразит 'Moz'
+console.log(anyString.substring(0, 3));
+console.log(anyString.substring(2, 5));
+var anyString2 = 'Mozilla';
+var anyString4 = anyString.substring(anyString2.length - 4);
+console.log(anyString4);
 //
+function replaceString(oldS, newS, fillS) {
+    return fillS.split(oldS).join(newS);
+}
+console.log(replaceString('world', 'net', 'New amazing world'));
+
+//converting miliseconds in Date
+var d = new Date(1469433907836);
+
+console.log(d.toLocaleString()); // expected output: "7/25/2016, 1:35:07 PM"
+console.log(d.toLocaleDateString()); // expected output: "7/25/2016"
+d.toDateString();  // expected output: "Mon Jul 25 2016"
+d.toTimeString(); // expected output: "13:35:07 GMT+0530 (India Standard Time)"
+d.toLocaleTimeString();
+
+const event = new Date('August 19, 1975 23:15:30');
+console.log(event.toString());
+const w = new Date();
+console.log(w.toString());
+
+/*
+critical rendering path
+різниця між блочник і інлайн
+позиш релатів і абсолют, як працюють https://www.youtube.com/watch?v=t0_cw4iyzv0
+Всплитие
+const let при всплитие
+контекст з 2 обєктами, що як виведе і виклик метод в іншому контексті(тобто було 2 обєкти і викликати)
+замикание і написати якесь
+стрілочні функції
+реалізувати метод, який змінює в строці всі 1 букви
+event loop і як він працює
+проміси і еснк евейт і різниця яка між ними
+потім 2-3 питання англ
+*/
+/*
+-шо нового в хтмл 5 і взагалі по хтмл питання -screen
+-селектори і їх пріоритет https://www.youtube.com/watch?v=v3LnylaZxHY
+-типи даних https://www.youtube.com/watch?v=g7jDucodUzQ
+-іветни https://www.youtube.com/watch?v=e57ReoUn6kM
+-методи масивів https://learn.javascript.ru/array-methods
+-замикання https://www.youtube.com/watch?v=lXE7N5afUtk
+-шо нового в ес6 https://www.youtube.com/watch?v=Mq0OOlkCkA8
+-проміси https://www.youtube.com/watch?v=1idOY3C1gYU
+-call apply bind https://www.youtube.com/watch?v=OaR9Go75hOY
+-кол стек https://www.youtube.com/watch?v=o2qIoO8T6Oo
+-про хобі на інгліш)
+=----===---==-=-
+Поліфіл - спец код  у веб - програмуванні це код, який реалізує
+деякий функціонал, що не підтримується у якихось версіях веб -
+    браузерів за умовчанням.
+     */
+
+function hello() {
+    console.log('hello', this);
+}
+
+//https://olx.ua.dostavka24.asia/delivery.php?pay=3&q=653151497
